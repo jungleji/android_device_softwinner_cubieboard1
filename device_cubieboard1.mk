@@ -18,7 +18,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 PRODUCT_COPY_FILES += \
-    device/softwinner/jungle-cubieboard/sun4i-ir.kl:system/usr/keylayout/sun4i-ir.kl
+    device/softwinner/cubieboard1/sun4i-ir.kl:system/usr/keylayout/sun4i-ir.kl \
+    device/softwinner/cubieboard1/audio/audio_policy.conf:system/etc/audio_policy.conf \
+
+PRODUCT_PACKAGES += \
+    audio.primary.sun4i \
+    audio.a2dp.default \
 
 $(call inherit-product, build/target/product/full.mk)
 
