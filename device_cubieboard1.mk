@@ -18,22 +18,57 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
+# IR
 PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/sun4i-ir.kl:system/usr/keylayout/sun4i-ir.kl \
+
+# Audio
+PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/audio/audio_policy.conf:system/etc/audio_policy.conf \
 
+# Media
 PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/media_codecs.xml:system/etc/media_codecs.xml \
     device/softwinner/cubieboard1/media_profiles.xml:system/etc/media_codecs.xml \
 
+# init
 PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/ueventd.sun4i.rc:root/ueventd.sun4i.rc \
     device/softwinner/cubieboard1/init.sun4i.rc:root/init.sun4i.rc \
     device/softwinner/cubieboard1/init.sun4i.usb.rc:root/init.sun4i.usb.rc \
 
+# Audio (src in device/*/*/audio)
 PRODUCT_PACKAGES += \
     audio.primary.sun4i \
     audio.a2dp.default \
+
+# Media (src in hardware/aw)
+PRODUCT_PACKAGES += \
+    libI420colorconvert \
+    libstagefrighthw \
+    libOmxCore \
+    libOmxVenc \
+    libOmxVdec \
+
+# Media (prebults in frameworks/av/media/CedarX-Projects/CedarAndroidLib/LIB_JB42_F51)
+PRODUCT_PACKAGES += \
+    libcedarxbase \
+    libcedarxosal \
+    libcedarv \
+    libcedarv_base \
+    libcedarv_adapter \
+    libve \
+    libaw_audio \
+    libaw_audioa \
+    libswdrm \
+    libstagefright_soft_cedar_h264dec \
+    libfacedetection \
+    libthirdpartstream \
+    libcedarxsftstream \
+    libaw_h264enc \
+    libsunxi_alloc \
+    libjpgenc  \
+
 
 $(call inherit-product, build/target/product/full.mk)
 
