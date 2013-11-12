@@ -39,8 +39,12 @@ PRODUCT_COPY_FILES += \
 
 # Audio (src in device/*/*/audio)
 PRODUCT_PACKAGES += \
-    audio.primary.sun4i \
+    audio.primary.$(TARGET_BOARD_PLATFORM) \
     audio.a2dp.default \
+
+# hwcomposer (src in device/*/*/hwcomposer)
+PRODUCT_PACKAGES += \
+    hwcomposer.$(TARGET_BOARD_PLATFORM) \
 
 # Media (src in hardware/aw)
 PRODUCT_PACKAGES += \
