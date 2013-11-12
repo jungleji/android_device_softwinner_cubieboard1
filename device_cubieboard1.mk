@@ -16,9 +16,9 @@ endif
 
 # prebuilt lichee kernel
 PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
+    $(LOCAL_KERNEL):kernel \
 
-# IR
+# IR keylayout
 PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/sun4i-ir.kl:system/usr/keylayout/sun4i-ir.kl \
 
@@ -37,10 +37,11 @@ PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/init.sun4i.rc:root/init.sun4i.rc \
     device/softwinner/cubieboard1/init.sun4i.usb.rc:root/init.sun4i.usb.rc \
 
-# Audio (src in device/*/*/audio)
+# Audio (src in device/*/*/audio, system/media/audio_utils)
 PRODUCT_PACKAGES += \
     audio.primary.$(TARGET_BOARD_PLATFORM) \
     audio.a2dp.default \
+    libaudioutils \
 
 # hwcomposer (src in device/*/*/hwcomposer)
 PRODUCT_PACKAGES += \
@@ -77,6 +78,33 @@ PRODUCT_PACKAGES += \
     libsunxi_alloc \
     libjpgenc  \
 
+# Input method (src in packages/inputmethods/)
+PRODUCT_PACKAGES += \
+    libjni_pinyinime \
+    LatinIME \
+
+# fs tools (src in external/e2fsprogs, system/extra/ext4_utils)
+PRODUCT_PACKAGES += \
+    e2fsck \
+    libext2fs \
+    libext2_blkid \
+    libext2_uuid \
+    libext2_profile \
+    libext2_com_err \
+    libext2_e2p \
+    make_ext4fs \
+
+# Allwinner Tvd packages (src in device/*/*/packages/)
+PRODUCT_PACKAGES += \
+    TvdSettings \
+    TvdFileManager \
+    TvdVideo \
+
+# Wallpapers (src in packages/wallpapers)
+PRODUCT_PACKAGES += \
+    LiveWallpapersPicker \
+    LiveWallpapers \
+    android.software.live_wallpaper.xml \
 
 $(call inherit-product, build/target/product/full.mk)
 
