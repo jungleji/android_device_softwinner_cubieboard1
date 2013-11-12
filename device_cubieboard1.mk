@@ -37,6 +37,27 @@ PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/init.sun4i.rc:root/init.sun4i.rc \
     device/softwinner/cubieboard1/init.sun4i.usb.rc:root/init.sun4i.usb.rc \
 
+# bin files
+PRODUCT_COPY_FILES += \
+	device/softwinner/cubieboard1/bin/fsck.exfat:system/bin/fsck.exfat \
+	device/softwinner/cubieboard1/bin/mkfs.exfat:system/bin/mkfs.exfat \
+	device/softwinner/cubieboard1/bin/mount.exfat:system/bin/mount.exfat \
+	device/softwinner/cubieboard1/bin/ntfs-3g:system/bin/ntfs-3g \
+	device/softwinner/cubieboard1/bin/ntfs-3g.probe:system/bin/ntfs-3g.probe \
+	device/softwinner/cubieboard1/bin/mkntfs:system/bin/mkntfs \
+	device/softwinner/cubieboard1/bin/busybox:system/bin/busybox \
+
+# for boot nand/card auto detect
+PRODUCT_COPY_FILES += \
+	device/softwinner/cubieboard1/bin/busybox:root/sbin/busybox \
+	device/softwinner/cubieboard1/bin/init_parttion.sh:root/sbin/init_parttion.sh \
+	device/softwinner/cubieboard1/bin/busybox:recovery/root/sbin/busybox \
+	device/softwinner/cubieboard1/bin/init_parttion.sh:recovery/root/sbin/init_parttion.sh \
+
+# egl config
+PRODUCT_COPY_FILES += \
+    device/softwinner/cubieboard2/egl.cfg:system/lib/egl/egl.cfg \
+
 # Audio (src in device/*/*/audio, system/media/audio_utils)
 PRODUCT_PACKAGES += \
     audio.primary.$(TARGET_BOARD_PLATFORM) \
