@@ -14,12 +14,22 @@ else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
+# prebuilt lichee kernel
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/sun4i-ir.kl:system/usr/keylayout/sun4i-ir.kl \
     device/softwinner/cubieboard1/audio/audio_policy.conf:system/etc/audio_policy.conf \
+
+PRODUCT_COPY_FILES += \
+    device/softwinner/cubieboard1/media_codecs.xml:system/etc/media_codecs.xml \
+    device/softwinner/cubieboard1/media_profiles.xml:system/etc/media_codecs.xml \
+
+PRODUCT_COPY_FILES += \
+    device/softwinner/cubieboard1/ueventd.sun4i.rc:root/ueventd.sun4i.rc \
+    device/softwinner/cubieboard1/init.sun4i.rc:root/init.sun4i.rc \
+    device/softwinner/cubieboard1/init.sun4i.usb.rc:root/init.sun4i.usb.rc \
 
 PRODUCT_PACKAGES += \
     audio.primary.sun4i \
