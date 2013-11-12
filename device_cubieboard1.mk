@@ -46,6 +46,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     hwcomposer.$(TARGET_BOARD_PLATFORM) \
 
+# display (src in device/*/*/display)
+PRODUCT_PACKAGES += \
+    display.$(TARGET_BOARD_PLATFORM) \
+
 # Media (src in hardware/aw)
 PRODUCT_PACKAGES += \
     libI420colorconvert \
