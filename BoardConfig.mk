@@ -28,3 +28,5 @@ TARGET_PREBUILT_KERNEL := device/softwinner/cubieboard1/kernel
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 CUBIEBOARD_HARDWARE := true
+
+TARGET_HARDWARE_INCLUDE := $(TOP)/device/softwinner/cubieboard1/hardware/include
