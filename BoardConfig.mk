@@ -30,3 +30,10 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 CUBIEBOARD_HARDWARE := true
 
 TARGET_HARDWARE_INCLUDE := $(TOP)/device/softwinner/cubieboard1/hardware/include
+
+# cedarx
+CEDARX_CHIP_VERSION := F51
+CEDARX_USE_SWAUDIO := Y
+
+# DRM widevine
+BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 3

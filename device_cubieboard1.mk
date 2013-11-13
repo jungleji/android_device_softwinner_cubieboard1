@@ -14,6 +14,51 @@ else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.kernel.android.checkjni=0 \
+    persist.sys.timezone=Asia/Shanghai \
+    persist.sys.language=en \
+    persist.sys.country=US \
+    wifi.interface=wlan0 \
+    wifi.supplicant_scan_interval=15 \
+    debug.egl.hw=1 \
+    ro.display.switch=1 \
+    ro.opengles.version=131072 \
+    keyguard.no_require_sim=true \
+    persist.sys.strictmode.visual=0 \
+    persist.sys.strictmode.disable=1 \
+    hwui.render_dirty_regions=false \
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    drm.service.enabled=false \
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapsize=256m \
+    dalvik.vm.heapstartsize=8m \
+    dalvik.vm.heapgrowthlimit=96m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=2m \
+    dalvik.vm.heapmaxfree=8m \
+    persist.sys.usb.config=mass_storage,adb \
+    ro.property.tabletUI=true \
+    ro.udisk.lable=cubie \
+    ro.product.firmware=v1.0 \
+    ro.sw.defaultlauncherpackage=com.softwinner.launcher \
+    ro.sw.defaultlauncherclass=com.softwinner.launcher.Launcher \
+    audio.output.active=AUDIO_HDMI \
+    audio.input.active=AUDIO_CODEC \
+    ro.audio.multi.output=true \
+    ro.sw.directlypoweroff=true \
+    ro.sw.shortpressleadshut=false \
+    ro.softmouse.left.code=6 \
+    ro.softmouse.right.code=14 \
+    ro.softmouse.top.code=67 \
+    ro.softmouse.bottom.code=10 \
+    ro.softmouse.leftbtn.code=2 \
+    ro.softmouse.midbtn.code=-1 \
+    ro.softmouse.rightbtn.code=-1 \
+    ro.sw.videotrimming=1 \
+
 # prebuilt lichee kernel
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel \
@@ -152,6 +197,16 @@ PRODUCT_PACKAGES += \
     gpioservice \
     libgpio_jni \
     libgpioservice \
+
+# DRM widevine
+PRODUCT_PACKAGES += \
+    com.google.widevine.software.drm.xml \
+    com.google.widevine.software.drm \
+    libdrmwvmplugin \
+    libwvm \
+    libWVStreamControlAPI_L3 \
+    libwvdrm_L3 \
+    libdrmdecrypt \
 
 $(call inherit-product, build/target/product/full.mk)
 
