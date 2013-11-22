@@ -86,11 +86,14 @@ public class ChooseLockPatternTutorial extends PreferenceActivity {
 
             // Set up LockPatternView to be a non-interactive demo animation
             mPatternView = (LockPatternView) view.findViewById(R.id.lockPattern);
+
+            byte patternSize = getActivity().getIntent().getByteExtra("pattern_size", LockPatternUtils.PATTERN_SIZE_DEFAULT);
+
             ArrayList<LockPatternView.Cell> demoPattern = new ArrayList<LockPatternView.Cell>();
-            demoPattern.add(LockPatternView.Cell.of(0,0));
-            demoPattern.add(LockPatternView.Cell.of(0,1));
-            demoPattern.add(LockPatternView.Cell.of(1,1));
-            demoPattern.add(LockPatternView.Cell.of(2,1));
+            demoPattern.add(LockPatternView.Cell.of(0,0,patternSize));
+            demoPattern.add(LockPatternView.Cell.of(0,1,patternSize));
+            demoPattern.add(LockPatternView.Cell.of(1,1,patternSize));
+            demoPattern.add(LockPatternView.Cell.of(2,1,patternSize));
             mPatternView.setPattern(LockPatternView.DisplayMode.Animate, demoPattern);
             mPatternView.disableInput();
 

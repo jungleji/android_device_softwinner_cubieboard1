@@ -84,10 +84,6 @@ PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/recovery.fstab:recovery.fstab \
     device/softwinner/cubieboard1/vold.fstab:system/etc/vold.fstab \
 
-# init logo
-PRODUCT_COPY_FILES += \
-    device/softwinner/cubieboard1/initlogo.rle:root/initlogo.rle \
-
 # bin files
 PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/bin/fsck.exfat:system/bin/fsck.exfat \
