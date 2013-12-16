@@ -2,29 +2,31 @@ import init.sun4i.usb.rc
 
 on early-init
 
-        export EXTERNAL_STORAGE /storage/sdcard0
-        export SECONDARY_STORAGE /storage/sdcard1
-        mkdir /storage 0050 system sdcard_r
-        mkdir /storage/sdcard0 0755 system system
-        mkdir /storage/sdcard1 0755 system system
-        mkdir /storage/sdcard2 0755 system system
-        symlink /storage/sdcard0 /sdcard
-        symlink /storage/sdcard0 /mnt/sdcard
+	export EXTERNAL_STORAGE /mnt/sdcard
+	mkdir /mnt/sdcard 0000 system system
+	# for backwards compatibility
+	symlink /mnt/sdcard /sdcard
+
+	mkdir /mnt/usbhost0 0000 system system
+	mkdir /mnt/usbhost1 0000 system system
+	mkdir /mnt/sata 0000 system system
 
 on fs
 
-        symlink /dev/block/nandc /dev/block/boot
-        symlink /dev/block/nandd /dev/block/system
-        symlink /dev/block/nande /dev/block/data
-        symlink /dev/block/nandg /dev/block/recovery
-        symlink /dev/block/nandh /dev/block/cache
-        symlink /dev/block/nandf /dev/block/misc
+        # symlink /dev/block/nandc /dev/block/boot
+        # symlink /dev/block/nandd /dev/block/system
+        # symlink /dev/block/nande /dev/block/data
+        symlink /dev/block/mmcblk0p5 /dev/block/data
+        # symlink /dev/block/nandg /dev/block/recovery
+        # symlink /dev/block/nandh /dev/block/cache
+        symlink /dev/block/mmcblk0p8 /dev/block/cache
+        # symlink /dev/block/nandf /dev/block/misc
 
         #exec /system/bin/e2fsck -y /dev/block/system
         exec /system/bin/e2fsck -y /dev/block/data
         exec /system/bin/e2fsck -y /dev/block/cache
 
-        mount ext4 /dev/block/system /system wait ro noatime nodev barrier=0 nobh
+        # mount ext4 /dev/block/system /system wait ro noatime nodev barrier=0 nobh
         mount ext4 /dev/block/data /data wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc commit=30
         mount ext4 /dev/block/cache /cache wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc commit=30
 
@@ -125,6 +127,7 @@ service u3gmonitor /system/bin/u3gmonitor
     class main
     user root
     group root
+    disabled
     oneshot
 
 service hciattach /system/bin/hciattach -n -s 115200 /dev/ttyS1 rda 1500000

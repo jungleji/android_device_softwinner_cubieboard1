@@ -3235,8 +3235,8 @@ static int adev_open(const hw_module_t* module, const char* name,
         adev->hw_device.get_supported_devices 	= adev_get_supported_devices;
         adev->hw_device.init_check 		= adev_init_check;
         adev->hw_device.set_voice_volume	= adev_set_voice_volume;
-        adev->hw_device.set_master_volum	= adev_set_master_volume;
-	adev->hw_device.get_master_volum	= adev_get_master_volume;
+        adev->hw_device.set_master_volume	= adev_set_master_volume;
+	adev->hw_device.get_master_volume	= adev_get_master_volume;
         adev->hw_device.set_mode 	        = adev_set_mode;
         adev->hw_device.set_mic_mute 		= adev_set_mic_mute;
         adev->hw_device.get_mic_mute 		= adev_get_mic_mute;

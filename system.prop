@@ -1,3 +1,6 @@
 #
 # system.prop for cubieboard1
 #
+
+ro.secure=0
+ro.debuggable=1
