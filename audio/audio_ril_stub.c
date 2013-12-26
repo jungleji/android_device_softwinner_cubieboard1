@@ -29,7 +29,7 @@ int get_current_tty_dev(char * tty_dev)
 
 int ril_set_call_volume(enum ril_sound_type sound_type, int volume)
 {
-        return 0;
+    return 0;
 }
 
 int ril_set_call_audio_path(enum ril_audio_path path)

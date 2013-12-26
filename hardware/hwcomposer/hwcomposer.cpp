@@ -1703,7 +1703,7 @@ static int hwc_device_open(const struct hw_module_t* module, const char* name,
         dev->device.set             = hwc_set;
         dev->device.setparameter    = hwc_setparameter;
         dev->device.getparameter    = hwc_getparameter;
-        dev->device.registerProcs   = hwc_register_procs;
+        // dev->device.registerProcs   = hwc_register_procs;
         //dev->device.methods         = &hwc_methods;
         dev->device.eventControl	= hwc_eventControl;
 		dev->device.blank			= hwc_blank;
@@ -1738,7 +1738,7 @@ static int hwc_device_open(const struct hw_module_t* module, const char* name,
 
         dev->mode = 0;*/
         hwc_init(dev);
-
+        /*
 		if(dev->device.common.version == HWC_DEVICE_API_VERSION_1_0)
         {
         	status = pthread_create(&dev->vsync_thread, NULL, hwc_vsync_thread, dev);
@@ -1747,6 +1747,7 @@ static int hwc_device_open(const struct hw_module_t* module, const char* name,
 	            status = -status;
 	        }
 		}
+        */
     }
     return status;
 }

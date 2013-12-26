@@ -14,7 +14,4 @@
 
 # Mounts the first usable partition of the specified device
 #/devices/platform/awsmc.3/mmc_host for sdio
-dev_mount	sata	/mnt/sata	auto	/devices/platform/sw_ahci.0
-dev_mount	sdcard	/mnt/sdcard	auto	/devices/virtual/block/nandi
-dev_mount   usbhost0  /mnt/usbhost0 auto  /devices/platform/sw-ehci.1 /devices/platform/sw_hcd_host0 /devices/platform/sw-ohci.1
-dev_mount   usbhost1  /mnt/usbhost1 auto  /devices/platform/sw-ehci.2 /devices/platform/sw_hcd_host1 /devices/platform/sw-ohci.2
+dev_mount	sdcard             /mnt/sdcard	auto	/devices/platform/sw-ehci.1 /devices/platform/sw-ohci.1

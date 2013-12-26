@@ -24,6 +24,7 @@ typedef struct hwc_context_t
 {
         hwc_composer_device_1_t 	device;
         hwc_procs_t 		       *procs;
+
         int			dispfd;
         int                     mFD_fb[2];
         e_hwc_mode_t            mode;
@@ -52,6 +53,6 @@ typedef struct hwc_context_t
         bool                    vsync_en;
         pthread_t               vsync_thread;
         bool                    screen_size_change;
-}sun4i_hwc_context_t;
+} sun4i_hwc_context_t;
 
 #endif

@@ -1,34 +1,54 @@
 import init.sun4i.usb.rc
 
 on early-init
-
 	export EXTERNAL_STORAGE /mnt/sdcard
-	mkdir /mnt/sdcard 0000 system system
+	mkdir /mnt/sdcard 0755 system system
 	# for backwards compatibility
 	symlink /mnt/sdcard /sdcard
 
-	mkdir /mnt/usbhost0 0000 system system
-	mkdir /mnt/usbhost1 0000 system system
-	mkdir /mnt/sata 0000 system system
+	# mkdir /mnt/extsd 0755 system system
+	# mkdir /mnt/usbhost1 0755 system system
+	# mkdir /mnt/sata 0755 system system
 
 on fs
 
         # symlink /dev/block/nandc /dev/block/boot
         # symlink /dev/block/nandd /dev/block/system
         # symlink /dev/block/nande /dev/block/data
-        symlink /dev/block/mmcblk0p5 /dev/block/data
         # symlink /dev/block/nandg /dev/block/recovery
         # symlink /dev/block/nandh /dev/block/cache
-        symlink /dev/block/mmcblk0p8 /dev/block/cache
         # symlink /dev/block/nandf /dev/block/misc
 
         #exec /system/bin/e2fsck -y /dev/block/system
-        exec /system/bin/e2fsck -y /dev/block/data
-        exec /system/bin/e2fsck -y /dev/block/cache
+        # exec /system/bin/e2fsck -y /dev/block/data
+        # exec /system/bin/e2fsck -y /dev/block/cache
 
         # mount ext4 /dev/block/system /system wait ro noatime nodev barrier=0 nobh
-        mount ext4 /dev/block/data /data wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc commit=30
-        mount ext4 /dev/block/cache /cache wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc commit=30
+        # mount ext4 /dev/block/data /data wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc commit=30
+        # mount ext4 /dev/block/cache /cache wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc commit=30
+
+# Using mmc storage
+        symlink /dev/block/mmcblk0p5 /dev/block/data
+        symlink /dev/block/mmcblk0p8 /dev/block/cache
+        symlink /dev/block/mmcblk0p9 /dev/block/private
+
+# try to mount /data
+	wait /dev/block/data
+	exec /system/bin/logwrapper /system/bin/e2fsck -y /dev/block/data
+	exec /system/bin/busybox mount -t ext4 -o noatime,nosuid,nodev,barrier=0,journal_checksum,noauto_da_alloc /dev/block/data /data
+
+# try to mount /cache
+	exec /system/bin/logwrapper /system/bin/e2fsck -y /dev/block/cache
+	exec /system/bin/busybox mount -t ext4 -o noatime,nosuid,nodev,barrier=0,journal_checksum,noauto_da_alloc /dev/block/cache /cache
+
+	# format_userdata /dev/block/UDISK SUGAR
+
+# try to mount /mnt/private
+	export PRIVATE_STORAGE /mnt/private
+	mkdir /mnt/private 0000 system system
+
+	exec /system/bin/logwrapper /system/bin/e2fsck -y /dev/block/private
+	exec /system/bin/busybox mount -t ext4 -o noatime,nosuid,nodev,barrier=0,journal_checksum,noauto_da_alloc /dev/block/private /mnt/private
 
 on post-fs
 
@@ -136,3 +156,27 @@ service hciattach /system/bin/hciattach -n -s 115200 /dev/ttyS1 rda 1500000
     group bluetooth net_bt_admin
     disabled
     oneshot	
+
+# service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /media /mnt/shell/emulated
+#     class late_start
+
+service securefile /system/bin/securefileserver
+    class main
+    user root
+    group root audio camera graphics inet net_bt net_bt_admin net_raw
+    ioprio rt 4
+    oneshot
+
+service isomountmanager /system/bin/isomountmanagerservice
+    class main
+    user root
+    group root audio camera graphics inet net_bt net_bt_admin net_raw
+    ioprio rt 4
+    oneshot
+
+service gpio /system/bin/gpioservice
+    class main
+    user root
+    group root audio camera graphics inet net_bt net_bt_admin net_raw
+    ioprio rt 4
+    oneshot

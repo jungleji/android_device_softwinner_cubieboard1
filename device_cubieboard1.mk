@@ -9,9 +9,9 @@ DEVICE_PACKAGE_OVERLAYS += device/softwinner/cubieboard1/overlay
 
 LOCAL_PATH := device/softwinner/cubieboard1
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+    LOCAL_KERNEL := $(LOCAL_PATH)/kernel
 else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -23,6 +23,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.supplicant_scan_interval=15 \
     debug.egl.hw=1 \
     ro.display.switch=1 \
+    ro.sf.lcd_density=160 \
     ro.opengles.version=131072 \
     keyguard.no_require_sim=true \
     persist.sys.strictmode.visual=0 \
@@ -84,6 +85,15 @@ PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/recovery.fstab:recovery.fstab \
     device/softwinner/cubieboard1/vold.fstab:system/etc/vold.fstab \
 
+# permissions
+PRODUCT_COPY_FILES += \
+    device/softwinner/cubieboard1/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
+    frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
+    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.xml:system/etc/permissions/android.hardware.touchscreen.xml \
+
 # bin files
 PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/bin/fsck.exfat:system/bin/fsck.exfat \
@@ -108,17 +118,18 @@ PRODUCT_COPY_FILES += \
 
 # Audio (src in device/*/*/audio, system/media/audio_utils)
 PRODUCT_PACKAGES += \
-    audio.primary.$(TARGET_BOARD_PLATFORM) \
+    audio.primary.sun4i \
     audio.a2dp.default \
     libaudioutils \
 
 # hwcomposer (src in device/*/*/hwcomposer)
 PRODUCT_PACKAGES += \
-    hwcomposer.$(TARGET_BOARD_PLATFORM) \
+    hwcomposer.sun4i \
+    gralloc.sun4i \
 
 # display (src in device/*/*/display)
 PRODUCT_PACKAGES += \
-    display.$(TARGET_BOARD_PLATFORM) \
+    display.sun4i \
 
 # Media (src in hardware/aw)
 PRODUCT_PACKAGES += \
