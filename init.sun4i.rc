@@ -95,54 +95,6 @@ on boot
         chown system system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
         chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
 
-# wifi related service
-service wpa_supplicant /system/bin/wpa_supplicant -D wext -i wlan0 \
-	-c /data/misc/wifi/wpa_supplicant.conf -e /data/misc/wifi/entropy.bin
-    class main
-    socket wpa_wlan0 dgram 0660 wifi wifi
-    group system wifi inet
-    disabled
-    oneshot
-
-service p2p_supplicant /system/bin/wpa_supplicant -D wext -i wlan0 \
-        -c /data/misc/wifi/wpa_supplicant.conf -e /data/misc/wifi/entropy.bin
-    class main
-    socket wpa_wlan0 dgram 0660 wifi wifi
-    group system wifi inet
-    disabled
-    oneshot
-
-# dhcpcd daemons
-service dhcpcd_wlan0 /system/bin/dhcpcd -aABKL
-    class main
-    disabled
-    oneshot    
-
-service iprenew_wlan0 /system/bin/dhcpcd -n
-    class main
-    disabled
-    oneshot
-
-service dhcpcd_p2p /system/bin/dhcpcd -aABKL
-    class main
-    disabled
-    oneshot
-
-service iprenew_p2p /system/bin/dhcpcd -n
-    class main
-    disabled
-    oneshot
-
-service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
-    class main
-    disabled
-    oneshot    
-
-service iprenew_eth0 /system/bin/dhcpcd -n
-    class main
-    disabled
-    oneshot
-
 service u3gmonitor /system/bin/u3gmonitor
     class main
     user root
@@ -180,3 +132,39 @@ service gpio /system/bin/gpioservice
     group root audio camera graphics inet net_bt net_bt_admin net_raw
     ioprio rt 4
     oneshot
+
+service rtw_suppl /system/bin/wpa_supplicant -iwlan0 -Dnl80211 \
+        -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+service dhcpcd_wlan0 /system/bin/dhcpcd -aABKL
+    class main
+    disabled
+    oneshot
+
+service iprenew_wlan0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+## Reserved for wifi direct function
+# service rtw_suppl_con /system/bin/wpa_supplicant \
+#         -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -e/data/misc/wifi/entropy.bin -N \
+#         -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf
+#     class main
+#     socket wpa_wlan0 dgram 660 wifi wifi
+#     disabled
+#     oneshot
+
+# service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+#     class main
+#     disabled
+#     oneshot
+
+# service iprenew_p2p /system/bin/dhcpcd -n
+#     class main
+#     disabled
+#     oneshot
