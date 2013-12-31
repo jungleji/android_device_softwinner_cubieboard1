@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "audio_hw_primary"
+#define LOG_TAG "AudioHW"
 #define LOG_NDEBUG 0
 
 #include <errno.h>
@@ -485,7 +485,7 @@ typedef struct name_map_t
 
 static name_map audio_name_map[AUDIO_MAP_CNT] =
 {
-	{"audiocodec",		AUDIO_NAME_CODEC},
+	{"sun4icodec",		AUDIO_NAME_CODEC},
 	{"sun4isndhdmi",	AUDIO_NAME_HDMI},
 	{"sndspdif",		AUDIO_NAME_SPDIF},
 };
