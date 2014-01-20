@@ -229,6 +229,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
         mUri = uri;
         mHeaders = headers;
         mSeekWhenPrepared = 0;
+        Log.d(TAG, "setVidwoURI: openVideo(), uri =  " + uri);
         openVideo();
         requestLayout();
         invalidate();
@@ -249,6 +250,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 	}
 	
     private void openVideo() {
+        Log.d(TAG, "openVideo()");
         if (mUri == null || mSurfaceHolder == null) {
             // not ready for playback just yet, will try again later
             return;
@@ -263,6 +265,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
         // called start() previously
         release(false);
         try {
+            Log.d(TAG, "openVideo(): Create MediaPlayer");
             mMediaPlayer = new MediaPlayer();
             mMediaPlayer.setOnPreparedListener(mPreparedListener);
             mMediaPlayer.setOnVideoSizeChangedListener(mSizeChangedListener);
@@ -271,11 +274,13 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
             mMediaPlayer.setOnErrorListener(mErrorListener);
             mMediaPlayer.setOnBufferingUpdateListener(mBufferingUpdateListener);
             mCurrentBufferPercentage = 0;
+            Log.d(TAG, "openVideo(): setDataSource mUri = " + mUri );
             mMediaPlayer.setDataSource(mContext, mUri, mHeaders);
             mMediaPlayer.setDisplay(mSurfaceHolder);
             mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mMediaPlayer.setScreenOnWhilePlaying(true);
             mMediaPlayer.setBdFolderPlayMode(mBDFolderPlayMode);
+            Log.d(TAG, "openVideo(): prepareAsync()");
             mMediaPlayer.prepareAsync();
             // we don't set the target state here either, but preserve the
             // target state that was there before.
@@ -631,6 +636,7 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
 
     public void start() {
         if (isInPlaybackState()) {
+            Log.d(TAG, "start(): call mMediaPlayer.start()");
             mMediaPlayer.start();
             mCurrentState = STATE_PLAYING;
         }

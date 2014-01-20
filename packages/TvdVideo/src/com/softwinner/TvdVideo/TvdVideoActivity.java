@@ -19,13 +19,16 @@ public class TvdVideoActivity extends Activity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        Log.d(TAG, "onCreate");
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
         setContentView(R.layout.movie_view);
         View rootView = findViewById(R.id.root);
         mBDFolderPlayMode = getIntent().getBooleanExtra(MediaStore.EXTRA_BD_FOLDER_PLAY_MODE, false);
+        Log.d(TAG, "onCreate: create MovieViewControl");
         mControl = new MovieViewControl(rootView, this, getIntent()) {
             @Override
             public void onCompletion() {

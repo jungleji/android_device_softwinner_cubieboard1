@@ -200,20 +200,22 @@ MediaController.OnListDataChanged, VideoView.OnSubFocusItems{
         return durationValue;
     }
 
-	public MovieViewControl(View rootView, Context context, Intent intent) {
+    public MovieViewControl(View rootView, Context context, Intent intent) {
         mVideoView = (VideoView) rootView.findViewById(R.id.surface_view);
         mProgressView = rootView.findViewById(R.id.progress_indicator);
 
         mContext = context;
+        Log.d(TAG, "constructor: call Uri2File2Uri");
         mUri = Uri2File2Uri(intent.getData());
         mRes = mContext.getResources();
         sp = mContext.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
-		editor = sp.edit();
-		initToast();
+        editor = sp.edit();
+        initToast();
 		
         // For streams that we expect to be slow to start up, show a
         // progress spinner until playback starts.
         String scheme = mUri.getScheme();
+        Log.d(TAG, "constructor: call getScheme() return " + scheme);
         if ("http".equalsIgnoreCase(scheme) || "rtsp".equalsIgnoreCase(scheme)) {
             mHandler.postDelayed(mPlayingChecker, 250);
         } else {
@@ -223,6 +225,7 @@ MediaController.OnListDataChanged, VideoView.OnSubFocusItems{
         /* create playlist */
         mFinishOnCompletion = intent.getBooleanExtra(MediaStore.EXTRA_FINISH_ON_COMPLETION, true);
         mPlayListType =  intent.getStringExtra(MediaStore.PLAYLIST_TYPE);
+        Log.d(TAG, "mPlayListType = " + mPlayListType);
         mPlayList = new ArrayList<String>();
         if(mPlayListType != null) {
         	 if(mPlayListType.equalsIgnoreCase(MediaStore.PLAYLIST_TYPE_CUR_FOLDER)) {
@@ -236,14 +239,16 @@ MediaController.OnListDataChanged, VideoView.OnSubFocusItems{
         	Log.w(TAG,"*********** scheme is null or scheme != file, create playlist failed *************");
         }
 
-		mVideoView.setBDFolderPlayMode(intent.getBooleanExtra(MediaStore.EXTRA_BD_FOLDER_PLAY_MODE, false));
+        mVideoView.setBDFolderPlayMode(intent.getBooleanExtra(MediaStore.EXTRA_BD_FOLDER_PLAY_MODE, false));
         mVideoView.setOnSubFocusItems(this);
         mVideoView.setOnErrorListener(this);
         mVideoView.setOnCompletionListener(this);
         mVideoView.setVideoURI(mUri);
+        Log.d(TAG, "constructor: create MediaController()");
         mMediaController = new MediaController(context);
         setImageButtonListener();
         mVideoView.setMediaController(mMediaController);
+        Log.d(TAG, "constructor: mMediaController.setFilePathTextView(" + mUri.getPath() + ")");
         mMediaController.setFilePathTextView(mUri.getPath());
         // make the video view handle keys for seeking and pausing
         mVideoView.requestFocus();
@@ -257,6 +262,7 @@ MediaController.OnListDataChanged, VideoView.OnSubFocusItems{
 //            deleteBookmark();
         }
 
+        Log.d(TAG, "constructor: call mVideoView.start()");
         mVideoView.start();
     }
         
@@ -265,16 +271,19 @@ MediaController.OnListDataChanged, VideoView.OnSubFocusItems{
     	Cursor c = null;
         IContentProvider mMediaProvider = mContext.getContentResolver().acquireProvider("media");
         String[] VIDEO_PROJECTION = new String[] { Video.Media.DATA };
+        Log.d(TAG, "enter Uri2File2Uri: videoUri = "  + videoUri);
         
         /* get video file */
         try {
-			c = mMediaProvider.query(videoUri, VIDEO_PROJECTION, null, null, null, null);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            c = mMediaProvider.query(videoUri, VIDEO_PROJECTION, null, null, null, null);
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         if(c != null)
         {
+            Log.d(TAG, "mediaProvider.query return c != null");
             try {
                 while (c.moveToNext()) {
                     path = c.getString(0);

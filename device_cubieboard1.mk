@@ -75,7 +75,7 @@ PRODUCT_COPY_FILES += \
 # Media
 PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/media_codecs.xml:system/etc/media_codecs.xml \
-    device/softwinner/cubieboard1/media_profiles.xml:system/etc/media_codecs.xml \
+    device/softwinner/cubieboard1/media_profiles.xml:system/etc/media_profiles.xml \
 
 # init
 PRODUCT_COPY_FILES += \
