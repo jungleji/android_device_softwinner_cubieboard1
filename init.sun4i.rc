@@ -11,13 +11,12 @@ on early-init
 	# mkdir /mnt/sata 0755 system system
 
 on fs
-
         # symlink /dev/block/nandc /dev/block/boot
         # symlink /dev/block/nandd /dev/block/system
         # symlink /dev/block/nande /dev/block/data
+        # symlink /dev/block/nandf /dev/block/misc
         # symlink /dev/block/nandg /dev/block/recovery
         # symlink /dev/block/nandh /dev/block/cache
-        # symlink /dev/block/nandf /dev/block/misc
 
         #exec /system/bin/e2fsck -y /dev/block/system
         # exec /system/bin/e2fsck -y /dev/block/data
@@ -28,9 +27,15 @@ on fs
         # mount ext4 /dev/block/cache /cache wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc commit=30
 
 # Using mmc storage
+        symlink /dev/block/mmcblk0p2 /dev/block/boot
+        symlink /dev/block/mmcblk0p3 /dev/block/system
         symlink /dev/block/mmcblk0p5 /dev/block/data
+        symlink /dev/block/mmcblk0p6 /dev/block/misc
+        symlink /dev/block/mmcblk0p7 /dev/block/recovery
         symlink /dev/block/mmcblk0p8 /dev/block/cache
         symlink /dev/block/mmcblk0p9 /dev/block/private
+
+        mount ext4 /dev/block/system /system wait ro noatime nodev barrier=0 nobh
 
 # try to mount /data
 	wait /dev/block/data

@@ -187,19 +187,19 @@ PRODUCT_PACKAGES += \
     LiveWallpapers \
     android.software.live_wallpaper.xml \
 
-# securefile (src in device/*/*/securefile)
+# securefile (src in frameworks/base/swextend/securefile)
 PRODUCT_PACKAGES += \
     securefileserver \
     libsecurefileservice \
     libsecurefile_jni \
 
-# isomount (src in device/*/*/isomountmanager)
+# isomount (src in frameworks/base/swextend/isomountmanager)
 PRODUCT_PACKAGES += \
     isomountmanagerservice \
     libisomountmanager_jni \
     libisomountmanagerservice \
 
-# gpio (src in device/*/*/gpio)
+# gpio (src in frameworks/base/swextend/gpio)
 PRODUCT_PACKAGES += \
     gpioservice \
     libgpio_jni \

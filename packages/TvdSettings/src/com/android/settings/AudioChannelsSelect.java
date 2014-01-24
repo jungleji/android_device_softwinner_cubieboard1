@@ -171,7 +171,7 @@ public class AudioChannelsSelect implements OnItemClickListener, OnCancelListene
 
 	@Override
 	public void onCancel(DialogInterface dialog) {
-		Log.d("chen","onCancel()  save audio output channels");
+		Log.d("AudioChannelsSelect","onCancel()  save audio output channels");
 		mAudioManager.setAudioDeviceActive(mChannels, AudioManager.AUDIO_OUTPUT_ACTIVE);
 	}
 }
