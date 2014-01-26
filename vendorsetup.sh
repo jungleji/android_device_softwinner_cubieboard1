@@ -2,5 +2,6 @@
 
 function cdev ()
 {
-    cd /home/jungle/cubie/porting/a10-4.2/device/softwinner/cubieboard1
+    tdevice=$(get_build_var TARGET_DEVICE)
+    cd $T/device/*/$tdevice
 }

@@ -125,7 +125,6 @@ PRODUCT_PACKAGES += \
 # hwcomposer (src in device/*/*/hwcomposer)
 PRODUCT_PACKAGES += \
     hwcomposer.sun4i \
-    gralloc.sun4i \
 
 # display (src in device/*/*/display)
 PRODUCT_PACKAGES += \
