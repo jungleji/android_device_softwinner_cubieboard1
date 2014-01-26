@@ -39,6 +39,6 @@ If there is no Makefile generated, you can create on manually:
 
     $ echo include build/core/main.mk > Makefile
 
-10) make
+7) build all
 
     $ mka
