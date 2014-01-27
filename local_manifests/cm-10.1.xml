@@ -13,8 +13,11 @@
   <remove-project name="CyanogenMod/android_system_core"/>
   <remove-project name="CyanogenMod/android_system_extras"/>
 
+  <project remote="github" revision="cm-10.1" name="jungleji/android_build" path="build">
+    <copyfile src="core/root.mk" dest="Makefile" />
+  </project>
+
   <project remote="github" revision="cm-10.1" name="jungleji/android_device_softwinner_cubieboard1" path="device/softwinner/cubieboard1" />
-  <project remote="github" revision="cm-10.1" name="jungleji/android_build" path="build" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_external_tinyalsa" path="external/tinyalsa" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_external_wpa_supplicant_8" path="external/wpa_supplicant_8" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_frameworks_av" path="frameworks/av" />
