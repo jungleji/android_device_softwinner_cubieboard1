@@ -7,7 +7,7 @@ on early-init
 	symlink /mnt/sdcard /sdcard
 
 	# mkdir /mnt/extsd 0755 system system
-	# mkdir /mnt/usbhost1 0755 system system
+	mkdir /mnt/usbhost1 0755 system system
 	# mkdir /mnt/sata 0755 system system
 
 on fs
@@ -100,12 +100,12 @@ on boot
         chown system system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
         chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
 
-service u3gmonitor /system/bin/u3gmonitor
-    class main
-    user root
-    group root
-    disabled
-    oneshot
+# service u3gmonitor /system/bin/u3gmonitor
+#     class main
+#     user root
+#     group root
+#     disabled
+#     oneshot
 
 service hciattach /system/bin/hciattach -n -s 115200 /dev/ttyS1 rda 1500000
     class main
@@ -151,6 +151,11 @@ service dhcpcd_wlan0 /system/bin/dhcpcd -aABKL
     oneshot
 
 service iprenew_wlan0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service dhcpcd_eth /system/bin/dhcpcd -ABKL
     class main
     disabled
     oneshot
