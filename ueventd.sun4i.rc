@@ -16,3 +16,4 @@
 /dev/pa_dev		  0777	 system	    system
 /dev/g2d		  0666	 system	    system
 /dev/vmouse		  0666	 system	    system
+/dev/bus/usb/*            0660   system     bluetooth

@@ -69,3 +69,8 @@ ifeq ($(BOARD_WIFI_VENDOR), realtek)
     WIFI_DRIVER_FW_PATH_P2P := ""
     WIFI_DRIVER_FW_PATH_PARAM := ""
 endif
+
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+BLUETOOTH_HCI_USE_USB := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/softwinner/cubieboard1/hardware//bluetooth
