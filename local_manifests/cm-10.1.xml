@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remove-project name="CyanogenMod/android_build"/>
+  <remove-project name="CyanogenMod/android_device_common"/>
+  <remove-project name="CyanogenMod/android_external_bluetooth_bluedroid"/>
   <remove-project name="CyanogenMod/android_external_tinyalsa"/>
   <remove-project name="CyanogenMod/android_external_wpa_supplicant_8"/>
   <remove-project name="CyanogenMod/android_frameworks_av"/>
@@ -18,6 +20,8 @@
   </project>
 
   <project remote="github" revision="cm-10.1" name="jungleji/android_device_softwinner_cubieboard1" path="device/softwinner/cubieboard1" />
+  <project remote="github" revision="cm-10.1" name="jungleji/android_device_common" path="device/common" />
+  <project remote="github" revision="cm-10.1" name="jungleji/android_external_bluetooth_bluedroid" path="external/bluetooth/bluedroid" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_external_tinyalsa" path="external/tinyalsa" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_external_wpa_supplicant_8" path="external/wpa_supplicant_8" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_frameworks_av" path="frameworks/av" />
