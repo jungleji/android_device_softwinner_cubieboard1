@@ -36,4 +36,5 @@
   <project remote="github" revision="cm-10.1" name="jungleji/android_system_core" path="system/core" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_system_extras" path="system/extras" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_vendor_softwinner_cubieboard1" path="vendor/softwinner/cubieboard1" />
+  <project remote="github" revision="cm-10.1" name="jungleji/linux-sunxi" path="kernel/softwinner/cubieboard1" />
 </manifest>

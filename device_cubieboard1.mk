@@ -60,10 +60,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.softmouse.rightbtn.code=-1 \
     ro.sw.videotrimming=1 \
 
-# prebuilt lichee kernel
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel \
-
 # IR keylayout
 PRODUCT_COPY_FILES += \
     device/softwinner/cubieboard1/sun4i-ir.kl:system/usr/keylayout/sun4i-ir.kl \
