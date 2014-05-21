@@ -20,7 +20,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 
 TARGET_KERNEL_CONFIG := cubieboard1_defconfig
 TARGET_KERNEL_SOURCE := kernel/softwinner/cubieboard1
-BOARD_USES_UBOOT := true
+BOARD_USES_UBOOT := false
 
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x2000000
@@ -75,4 +75,4 @@ endif
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BLUETOOTH_HCI_USE_USB := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/softwinner/cubieboard1/hardware//bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/softwinner/cubieboard1/hardware/bluetooth
