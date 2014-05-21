@@ -58,8 +58,8 @@ These images are ext4 filesystem data file, you can create them by hand. e.g. da
 
 Then, go to tools/pack, run pack-cm.sh script to generate nand image:
 
-$ cd tools/pack
-$ ./pack-cm.sh
+    $ cd tools/pack
+    $ ./pack-cm.sh
 
 XBMC
 ----
@@ -71,7 +71,7 @@ Now XBMC 13.0 with stagefright hardware decoder works on this system.
 You can download latest XBMC from http://mirrors.xbmc.org/releases/android/arm/
 and install with adb:
 
-$ adb install xbmc-13.0-armeabi-v7a.apk
+    $ adb install xbmc-13.0-armeabi-v7a.apk
 
 After XBMC launch, open System->Setting->Video->Acceleration page, need Setting level to advanced,
 uncheck MediaCodec and keep libstagefright hardware acceleration checked.
