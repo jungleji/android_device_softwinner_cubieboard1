@@ -14,6 +14,7 @@
   <remove-project name="CyanogenMod/android_packages_providers_MediaProvider"/>
   <remove-project name="CyanogenMod/android_system_core"/>
   <remove-project name="CyanogenMod/android_system_extras"/>
+  <remove-project name="CyanogenMod/android_system_vold"/>
 
   <project remote="github" revision="cm-10.1" name="jungleji/android_build" path="build">
     <copyfile src="core/root.mk" dest="Makefile" />
@@ -35,6 +36,8 @@
   <project remote="github" revision="cm-10.1" name="jungleji/android_packages_providers_MediaProvider" path="packages/providers/MediaProvider" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_system_core" path="system/core" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_system_extras" path="system/extras" />
+  <project remote="github" revision="cm-10.1" name="jungleji/android_system_vold" path="system/vold" />
+  <project remote="github" revision="cm-10.1" name="jungleji/android_tools_pack" path="tools/pack" />
   <project remote="github" revision="cm-10.1" name="jungleji/android_vendor_softwinner_cubieboard1" path="vendor/softwinner/cubieboard1" />
   <project remote="github" revision="cm-10.1" name="jungleji/linux-sunxi" path="kernel/softwinner/cubieboard1" />
 </manifest>
