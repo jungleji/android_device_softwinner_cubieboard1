@@ -17,7 +17,7 @@ Compile steps
 
 Copy cm-10.1.xml from local_manifest under this project to .repo/local_manifests
 
-3) sync code
+3) sync code. IMPORTANT: be prepared this is a 13 Gig download. 
 
     $ cd ~/cb-cm-10.1
     $ repo sync
